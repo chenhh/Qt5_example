@@ -1,43 +1,44 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>SortDialog</class>
- <widget class="QDialog" name="SortDialog" >
-  <property name="geometry" >
+ <widget class="QDialog" name="SortDialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>299</width>
-    <height>398</height>
+    <width>261</width>
+    <height>309</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Sort</string>
   </property>
-  <layout class="QGridLayout" >
-   <item rowspan="2" row="0" column="1" >
-    <layout class="QVBoxLayout" >
+  <layout class="QGridLayout">
+   <item row="0" column="1" rowspan="2">
+    <layout class="QVBoxLayout">
      <item>
-      <widget class="QPushButton" name="okButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
         <string>OK</string>
        </property>
-       <property name="default" >
+       <property name="default">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="cancelButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
         <string>Cancel</string>
        </property>
       </widget>
      </item>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>20</width>
          <height>0</height>
@@ -46,57 +47,57 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="moreButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="moreButton">
+       <property name="text">
         <string>&amp;More</string>
        </property>
-       <property name="checkable" >
+       <property name="checkable">
         <bool>true</bool>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item row="3" column="0" >
-    <widget class="QGroupBox" name="tertiaryGroupBox" >
-     <property name="title" >
+   <item row="3" column="0">
+    <widget class="QGroupBox" name="tertiaryGroupBox">
+     <property name="title">
       <string>&amp;Tertiary Key</string>
      </property>
-     <layout class="QGridLayout" >
-      <item row="1" column="1" colspan="2" >
-       <widget class="QComboBox" name="tertiaryOrderCombo" >
+     <layout class="QGridLayout">
+      <item row="1" column="1" colspan="2">
+       <widget class="QComboBox" name="tertiaryOrderCombo">
         <item>
-         <property name="text" >
+         <property name="text">
           <string>Ascending</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>Descending</string>
          </property>
         </item>
        </widget>
       </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="tertiaryOrderLabel" >
-        <property name="text" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Order:&lt;/p>&lt;/body>&lt;/html></string>
+      <item row="1" column="0">
+       <widget class="QLabel" name="tertiaryOrderLabel">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Order:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="0" >
-       <widget class="QLabel" name="tertiaryColumnLabel" >
-        <property name="text" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Column:&lt;/p>&lt;/body>&lt;/html></string>
+      <item row="0" column="0">
+       <widget class="QLabel" name="tertiaryColumnLabel">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Column:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="2" >
+      <item row="0" column="2">
        <spacer>
-        <property name="orientation" >
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0">
          <size>
           <width>31</width>
           <height>20</height>
@@ -104,10 +105,10 @@
         </property>
        </spacer>
       </item>
-      <item row="0" column="1" >
-       <widget class="QComboBox" name="tertiaryColumnCombo" >
+      <item row="0" column="1">
+       <widget class="QComboBox" name="tertiaryColumnCombo">
         <item>
-         <property name="text" >
+         <property name="text">
           <string>None</string>
          </property>
         </item>
@@ -116,46 +117,46 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="0" >
-    <widget class="QGroupBox" name="secondaryGroupBox" >
-     <property name="title" >
+   <item row="2" column="0">
+    <widget class="QGroupBox" name="secondaryGroupBox">
+     <property name="title">
       <string>&amp;Secondary Key</string>
      </property>
-     <layout class="QGridLayout" >
-      <item row="1" column="1" colspan="2" >
-       <widget class="QComboBox" name="secondaryOrderCombo" >
+     <layout class="QGridLayout">
+      <item row="1" column="1" colspan="2">
+       <widget class="QComboBox" name="secondaryOrderCombo">
         <item>
-         <property name="text" >
+         <property name="text">
           <string>Ascending</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>Descending</string>
          </property>
         </item>
        </widget>
       </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="secondaryOrderLabel" >
-        <property name="text" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Order:&lt;/p>&lt;/body>&lt;/html></string>
+      <item row="1" column="0">
+       <widget class="QLabel" name="secondaryOrderLabel">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Order:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="0" >
-       <widget class="QLabel" name="secondaryColumnLabel" >
-        <property name="text" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Column:&lt;/p>&lt;/body>&lt;/html></string>
+      <item row="0" column="0">
+       <widget class="QLabel" name="secondaryColumnLabel">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Column:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="2" >
+      <item row="0" column="2">
        <spacer>
-        <property name="orientation" >
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0">
          <size>
           <width>31</width>
           <height>20</height>
@@ -163,10 +164,10 @@
         </property>
        </spacer>
       </item>
-      <item row="0" column="1" >
-       <widget class="QComboBox" name="secondaryColumnCombo" >
+      <item row="0" column="1">
+       <widget class="QComboBox" name="secondaryColumnCombo">
         <item>
-         <property name="text" >
+         <property name="text">
           <string>None</string>
          </property>
         </item>
@@ -175,15 +176,15 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="0" >
+   <item row="1" column="0">
     <spacer>
-     <property name="orientation" >
+     <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeType" >
+     <property name="sizeType">
       <enum>QSizePolicy::Expanding</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
        <height>0</height>
@@ -191,46 +192,46 @@
      </property>
     </spacer>
    </item>
-   <item row="0" column="0" >
-    <widget class="QGroupBox" name="primaryGroupBox" >
-     <property name="title" >
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="primaryGroupBox">
+     <property name="title">
       <string>&amp;Primary Key</string>
      </property>
-     <layout class="QGridLayout" >
-      <item row="1" column="1" colspan="2" >
-       <widget class="QComboBox" name="primaryOrderCombo" >
+     <layout class="QGridLayout">
+      <item row="1" column="1" colspan="2">
+       <widget class="QComboBox" name="primaryOrderCombo">
         <item>
-         <property name="text" >
+         <property name="text">
           <string>Ascending</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>Descending</string>
          </property>
         </item>
        </widget>
       </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="primaryOrderLabel" >
-        <property name="text" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Order:&lt;/p>&lt;/body>&lt;/html></string>
+      <item row="1" column="0">
+       <widget class="QLabel" name="primaryOrderLabel">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Order:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="0" >
-       <widget class="QLabel" name="primaryColumnLabel" >
-        <property name="text" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Column:&lt;/p>&lt;/body>&lt;/html></string>
+      <item row="0" column="0">
+       <widget class="QLabel" name="primaryColumnLabel">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Column:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="2" >
+      <item row="0" column="2">
        <spacer>
-        <property name="orientation" >
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0">
          <size>
           <width>31</width>
           <height>20</height>
@@ -238,10 +239,10 @@
         </property>
        </spacer>
       </item>
-      <item row="0" column="1" >
-       <widget class="QComboBox" name="primaryColumnCombo" >
+      <item row="0" column="1">
+       <widget class="QComboBox" name="primaryColumnCombo">
         <item>
-         <property name="text" >
+         <property name="text">
           <string>None</string>
          </property>
         </item>
@@ -271,13 +272,13 @@
    <receiver>secondaryGroupBox</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
-     <x>288</x>
-     <y>141</y>
+    <hint type="sourcelabel">
+     <x>250</x>
+     <y>104</y>
     </hint>
-    <hint type="destinationlabel" >
-     <x>104</x>
-     <y>166</y>
+    <hint type="destinationlabel">
+     <x>113</x>
+     <y>202</y>
     </hint>
    </hints>
   </connection>
@@ -287,13 +288,13 @@
    <receiver>tertiaryGroupBox</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
-     <x>240</x>
-     <y>141</y>
+    <hint type="sourcelabel">
+     <x>250</x>
+     <y>104</y>
     </hint>
-    <hint type="destinationlabel" >
-     <x>170</x>
-     <y>307</y>
+    <hint type="destinationlabel">
+     <x>163</x>
+     <y>299</y>
     </hint>
    </hints>
   </connection>
@@ -303,12 +304,12 @@
    <receiver>SortDialog</receiver>
    <slot>accept()</slot>
    <hints>
-    <hint type="sourcelabel" >
-     <x>257</x>
+    <hint type="sourcelabel">
+     <x>249</x>
      <y>25</y>
     </hint>
-    <hint type="destinationlabel" >
-     <x>283</x>
+    <hint type="destinationlabel">
+     <x>260</x>
      <y>268</y>
     </hint>
    </hints>
@@ -319,13 +320,13 @@
    <receiver>SortDialog</receiver>
    <slot>reject()</slot>
    <hints>
-    <hint type="sourcelabel" >
-     <x>225</x>
-     <y>56</y>
+    <hint type="sourcelabel">
+     <x>250</x>
+     <y>55</y>
     </hint>
-    <hint type="destinationlabel" >
-     <x>264</x>
-     <y>335</y>
+    <hint type="destinationlabel">
+     <x>260</x>
+     <y>308</y>
     </hint>
    </hints>
   </connection>

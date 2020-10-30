@@ -3,10 +3,20 @@
 
 #include <QMainWindow>
 
-class QAction;
-class QLabel;
-class FindDialog;
-class Spreadsheet;
+//class QAction;
+//class QLabel;
+//class FindDialog;
+//class Spreadsheet;
+
+#include <QAction>
+#include <QLabel>
+#include <QStatusBar>
+#include <QToolBar>
+#include <QMenuBar>
+#include <QMenu>
+#include <QFileDialog>
+#include "finddialog.h"
+#include "spreadsheet.h"
 
 class MainWindow : public QMainWindow
 {

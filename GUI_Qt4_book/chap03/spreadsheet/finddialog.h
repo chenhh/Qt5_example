@@ -2,11 +2,16 @@
 #define FINDDIALOG_H
 
 #include <QDialog>
+#include <QCheckBox>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QLayout>
 
-class QCheckBox;
-class QLabel;
-class QLineEdit;
-class QPushButton;
+//class QCheckBox;
+//class QLabel;
+//class QLineEdit;
+//class QPushButton;
 
 class FindDialog : public QDialog
 {

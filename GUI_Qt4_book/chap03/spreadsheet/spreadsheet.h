@@ -2,9 +2,13 @@
 #define SPREADSHEET_H
 
 #include <QTableWidget>
-
-class Cell;
+#include <QMessageBox>
+#include <QApplication>
+#include "cell.h"
+//class Cell;
 class SpreadsheetCompare;
+
+
 
 class Spreadsheet : public QTableWidget
 {
