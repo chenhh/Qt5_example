@@ -2,12 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
-//class QAction;
-//class QLabel;
-//class FindDialog;
-//class Spreadsheet;
-
 #include <QAction>
 #include <QLabel>
 #include <QStatusBar>
@@ -23,6 +17,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    // ctor
     MainWindow();
 
 protected:

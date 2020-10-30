@@ -8,11 +8,6 @@
 #include <QPushButton>
 #include <QLayout>
 
-//class QCheckBox;
-//class QLabel;
-//class QLineEdit;
-//class QPushButton;
-
 class FindDialog : public QDialog
 {
     Q_OBJECT
