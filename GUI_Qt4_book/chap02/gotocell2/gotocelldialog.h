@@ -2,7 +2,6 @@
 #define GOTOCELLDIALOG_H
 
 #include <QDialog>
-
 #include "ui_gotocelldialog.h"
 
 /* 多重繼承, 均使用公開繼承
