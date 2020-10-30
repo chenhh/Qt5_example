@@ -10,8 +10,9 @@ FindDialog::FindDialog(QWidget *parent)
      */
     label = new QLabel(tr("Find &what:"));
     lineEdit = new QLineEdit;
-    // 當使用者按下label的快速鍵alt + w時，
-    // setBuddy會將focus指向lineEdit部件
+    /* 當使用者按下label的快速鍵alt + w時，
+     * setBuddy會將focus指向lineEdit部件
+     */
     label->setBuddy(lineEdit);
 
     caseCheckBox = new QCheckBox(tr("Match &case"));
@@ -23,7 +24,7 @@ FindDialog::FindDialog(QWidget *parent)
 
     closeButton = new QPushButton(tr("Close"));
 
-    // 改成新的signal slot syntax
+    /* 改成新的signal slot syntax */
     QObject::connect(lineEdit, &QLineEdit::textChanged,
                      this, &FindDialog::enableFindButton);
     QObject::connect(findButton,  &QPushButton::clicked,
@@ -32,8 +33,9 @@ FindDialog::FindDialog(QWidget *parent)
             this,  &FindDialog::close);
 
 
-    // Layout物件雖然沒有宣告在FindDialog class中，
-    // 但是使用setLayout動態交給Dialog管理
+    /* Layout物件雖然沒有宣告在FindDialog class中，
+     * 但是使用setLayout動態交給Dialog管理
+     */
     QHBoxLayout *topLeftLayout = new QHBoxLayout;
     topLeftLayout->addWidget(label);
     topLeftLayout->addWidget(lineEdit);
@@ -64,9 +66,12 @@ void FindDialog::findClicked()
             caseCheckBox->isChecked() ? Qt::CaseSensitive
                                       : Qt::CaseInsensitive
     };
-    if (backwardCheckBox->isChecked()) {
+    if (backwardCheckBox->isChecked())
+    {
         emit findPrevious(text, cs);
-    } else {
+    }
+    else
+    {
         emit findNext(text, cs);
     }
 }
