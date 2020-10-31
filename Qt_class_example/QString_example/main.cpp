@@ -79,11 +79,11 @@ void QString_example()
     str3.clear();
     qInfo()<<str3;
 
-    int x = QString::compare("aUtO", "AuTo", Qt::CaseInsensitive);  // x == 0
-    int y = QString::compare("auto", "Car", Qt::CaseSensitive);     // y > 0
-    int z = QString::compare("auto", "Car", Qt::CaseInsensitive);   // z < 0
+    int i = QString::compare("aUtO", "AuTo", Qt::CaseInsensitive);  // x == 0
+    int j = QString::compare("auto", "Car", Qt::CaseSensitive);     // y > 0
+    int k = QString::compare("auto", "Car", Qt::CaseInsensitive);   // z < 0
     // "x= 0, y= 30, z= -2"
-    qInfo()<<QString("x= %1, y= %2, z= %3").arg(x).arg(y).arg(z);
+    qInfo()<<QString("x= %1, y= %2, z= %3").arg(i).arg(j).arg(j);
 
     str3 = "abc";
     /* 'a'
@@ -99,9 +99,68 @@ void QString_example()
     for(auto iter=str3.cbegin(); iter!=str3.cend(); ++iter){
         qInfo()<<*iter;
     }
+    /* 'c'
+     * 'b'
+     * 'a'
+     */
     for(auto iter=str3.rbegin(); iter!=str3.rend(); ++iter){
         qInfo()<<*iter;
     }
+    for(auto iter=str3.crbegin(); iter!=str3.crend(); ++iter){
+        qInfo()<<*iter;
+    }
+
+    str3 = "This is Taiwan";
+    qInfo()<<str3.size(); //14
+    qInfo()<<str3.count(); //14
+
+    /* 不指定長度時，fill與原始字串長度相同 */
+    str3.fill('$');
+    qInfo()<<str3; // "$$$$$$$$$$$$$$"
+    str3.fill('$', 4);
+    qInfo()<<str3; //"$$$$"
+
+    QString x = "sticky question";
+    QString y = "sti";
+    qInfo() << x.indexOf(y);               // returns 0
+    qInfo() << x.indexOf(y, 1);            // returns 10
+    qInfo() << x.indexOf(y, 10);           // returns 10
+    qInfo() << x.indexOf(y, 11);           // returns -1, not found
+
+    QString str = "the minimum";
+    qInfo() << str.indexOf(QRegExp("m[aeiou]"), 0);       // returns 4
+
+    str = "Meal";
+    str.insert(1, QString("ontr"));
+    qInfo() << str; // str == "Montreal"
+
+    qInfo() << QString().isEmpty();            // returns true
+    qInfo() << QString("").isEmpty();          // returns true
+    qInfo() << QString("x").isEmpty();         // returns false
+    qInfo() << QString("abc").isEmpty();       // returns false
+
+    qInfo() << QString().isNull();             // returns true
+    qInfo() << QString("").isNull();           // returns false
+    qInfo() << QString("abc").isNull();        // returns false
+
+    x = "crazy azimuths";
+    y = "az";
+    qInfo() << x.lastIndexOf(y);           // returns 6
+    qInfo() << x.lastIndexOf(y, 6);        // returns 6
+    qInfo() << x.lastIndexOf(y, 5);        // returns 2
+    qInfo() << x.lastIndexOf(y, 1);        // returns -1
+
+    x = "Pineapple";
+    // Returns a substring that contains the n leftmost characters of the string.
+    y = x.left(4);
+    qInfo() << y; // y == "Pine"
+
+    QString s = "apple";
+    qInfo() << s.leftJustified(8, '.');    // t == "apple..."
+
+    str = "Pineapple";
+    qInfo() << str.leftJustified(5, '.', true);    // str == "Pinea"
+
 }
 
 
