@@ -41,8 +41,6 @@ void qtime_example()
     qDebug() << "msecsTo:" << T1.msecsTo(T2);//比較兩個時間相差多少毫秒,T2比T1早為負數
     qDebug() << "msecsSinceStartOfDay:" << T1.msecsSinceStartOfDay();//返回自當天的毫秒數
     qDebug() << "isNull:" << T1.isNull();//日期是否為空，為空返回true
-
-
 }
 
 int main()
