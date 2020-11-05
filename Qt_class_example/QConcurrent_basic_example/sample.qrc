@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/logo">
+        <file>pic/freebsd.png</file>
+    </qresource>
+</RCC>
