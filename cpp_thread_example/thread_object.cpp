@@ -14,13 +14,22 @@ void show()
     g_display_mutex.unlock();
 }
 
-
 int main()
 {
+    // create two threads
     thread t1(show);
     thread t2(show);
 
-    t1.join();
-    t2.join();
+    if(!t1.joinable()){
+        cout << "t1 thread unjoinable" << endl;
+    } else {
+        t1.join();
+    }
+
+    if(!t2.joinable()){
+        cout << "t2 thread unjoinable" << endl;
+    } else {
+        t2.join();
+    }
     return 0;
 }
