@@ -5,7 +5,7 @@
 GoToCellDialog::GoToCellDialog(QWidget *parent)
     : QDialog(parent)
 {
-    // 在Ui::GoToCellDialog的method
+    /* 在Ui::GoToCellDialog的method */
     setupUi(this);
 
     /* 限定只能輪入1個英文字母(不分大小寫, 1~9的1個數字, 0~9的最多2個數字 */
@@ -17,7 +17,9 @@ GoToCellDialog::GoToCellDialog(QWidget *parent)
     connect(cancelButton, &QPushButton::clicked, this, &GoToCellDialog::reject);
 }
 
+// slot function
 void GoToCellDialog::on_lineEdit_textChanged()
 {
+    /* 在lineEdit的輸入值滿足條件時，obButton才可被按下 */
     okButton->setEnabled(lineEdit->hasAcceptableInput());
 }

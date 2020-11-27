@@ -14,7 +14,7 @@ class GoToCellDialog : public QDialog, public Ui::GoToCellDialog
 
 public:
     // ctor
-    GoToCellDialog(QWidget *parent = 0);
+    GoToCellDialog(QWidget *parent = nullptr);
 
 private slots:
     void on_lineEdit_textChanged();
