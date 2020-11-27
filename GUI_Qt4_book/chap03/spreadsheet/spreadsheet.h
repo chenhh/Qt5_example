@@ -15,7 +15,7 @@ class Spreadsheet : public QTableWidget
     Q_OBJECT
 
 public:
-    Spreadsheet(QWidget *parent = 0);
+    Spreadsheet(QWidget *parent = nullptr);
 
     bool autoRecalculate() const { return autoRecalc; }
     QString currentLocation() const;

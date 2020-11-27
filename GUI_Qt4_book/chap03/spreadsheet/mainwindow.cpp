@@ -8,7 +8,9 @@
 
 MainWindow::MainWindow()
 {
+    /* spreadsheet是自定義的class */
     spreadsheet = new Spreadsheet;
+    /* 將spreadsheet設為MainWindow的中央組件 */
     setCentralWidget(spreadsheet);
 
     createActions();
@@ -19,14 +21,21 @@ MainWindow::MainWindow()
 
     readSettings();
 
-    findDialog = 0;
+    /* 在未使用find前，先設nullptr  */
+    findDialog = nullptr;
 
+    /* :/ 初始化的QDir從根目錄瀏覽資源樹,
+     * 在images資料夾下找icon.png檔
+     * 而setWindowIcon(in QWidget)可在window左上角設定圖標
+     */
     setWindowIcon(QIcon(":/images/icon.png"));
+    /* 設為空字串，建立時不打開檔案 */
     setCurrentFile("");
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    /* 當使用者關閉windows時，跳出確認是否要關閉的選項 */
     if (okToContinue()) {
         writeSettings();
         event->accept();
@@ -162,69 +171,95 @@ void MainWindow::spreadsheetModified()
 
 void MainWindow::createActions()
 {
-    newAction = new QAction(tr("&New"), this);
+    /* new action與相關的設置 */
+    newAction = new QAction(tr("&New"), this); // parent is this window
     newAction->setIcon(QIcon(":/images/new.png"));
-    newAction->setShortcut(QKeySequence::New);
+    newAction->setShortcut(QKeySequence::New); // set standard hotkey, ctrl+n
+    /* 設定new action在下方status bar顯示的訊息 */
     newAction->setStatusTip(tr("Create a new spreadsheet file"));
-    connect(newAction, SIGNAL(triggered()), this, SLOT(newFile()));
+    /* 將此action的triggered() signal連接到window的私有 newFile函式 */
+//    connect(newAction, SIGNAL(triggered()), this, SLOT(newFile()));
+    connect(newAction, &QAction::triggered, this, &MainWindow::newFile);
 
+    /* open action與相關的設置 */
     openAction = new QAction(tr("&Open..."), this);
     openAction->setIcon(QIcon(":/images/open.png"));
     openAction->setShortcut(QKeySequence::Open);
     openAction->setStatusTip(tr("Open an existing spreadsheet file"));
-    connect(openAction, SIGNAL(triggered()), this, SLOT(open()));
+//    connect(openAction, SIGNAL(triggered()), this, SLOT(open()));
+    connect(openAction, &QAction::triggered, this, &MainWindow::open);
 
+    /* save action與相關的設置 */
     saveAction = new QAction(tr("&Save"), this);
     saveAction->setIcon(QIcon(":/images/save.png"));
     saveAction->setShortcut(QKeySequence::Save);
     saveAction->setStatusTip(tr("Save the spreadsheet to disk"));
-    connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
+//    connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
+    connect(saveAction, &QAction::triggered, this, &MainWindow::save);
 
+    /* save as action與相關的設置 */
     saveAsAction = new QAction(tr("Save &As..."), this);
     saveAsAction->setStatusTip(tr("Save the spreadsheet under a new "
                                   "name"));
-    connect(saveAsAction, SIGNAL(triggered()), this, SLOT(saveAs()));
+//    connect(saveAsAction, SIGNAL(triggered()), this, SLOT(saveAs()));
+    connect(saveAsAction, &QAction::triggered, this, &MainWindow::saveAs);
 
+    /* recent file 與相關的設置, 初始時設為不可見 */
     for (int i = 0; i < MaxRecentFiles; ++i) {
         recentFileActions[i] = new QAction(this);
         recentFileActions[i]->setVisible(false);
-        connect(recentFileActions[i], SIGNAL(triggered()),
-                this, SLOT(openRecentFile()));
+//        connect(recentFileActions[i], SIGNAL(triggered()),
+//                this, SLOT(openRecentFile()));
+        connect(recentFileActions[i], &QAction::triggered,
+                this, &MainWindow::openRecentFile);
     }
 
+    /* exit action 與相關的設置 */
     exitAction = new QAction(tr("E&xit"), this);
-    exitAction->setShortcut(tr("Ctrl+Q"));
+    exitAction->setShortcut(tr("Ctrl+Q")); // manual set hotkey
     exitAction->setStatusTip(tr("Exit the application"));
-    connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
+//    connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
+    connect(exitAction, &QAction::triggered, this, &MainWindow::close);
 
+    /* cut action 與相關的設置 */
     cutAction = new QAction(tr("Cu&t"), this);
     cutAction->setIcon(QIcon(":/images/cut.png"));
-    cutAction->setShortcut(QKeySequence::Cut);
+    cutAction->setShortcut(QKeySequence::Cut); // ctrl + x
     cutAction->setStatusTip(tr("Cut the current selection's contents "
                                "to the clipboard"));
-    connect(cutAction, SIGNAL(triggered()), spreadsheet, SLOT(cut()));
+    /* cut是剪下spreadsheet cell中的資料 */
+//    connect(cutAction, SIGNAL(triggered()), spreadsheet, SLOT(cut()));
+    connect(cutAction, &QAction::triggered, spreadsheet, &Spreadsheet::cut);
 
+    /* copy action 與相關的設置 */
     copyAction = new QAction(tr("&Copy"), this);
     copyAction->setIcon(QIcon(":/images/copy.png"));
-    copyAction->setShortcut(QKeySequence::Copy);
+    copyAction->setShortcut(QKeySequence::Copy); // ctrl + c
     copyAction->setStatusTip(tr("Copy the current selection's contents "
                                 "to the clipboard"));
-    connect(copyAction, SIGNAL(triggered()), spreadsheet, SLOT(copy()));
+//    connect(copyAction, SIGNAL(triggered()), spreadsheet, SLOT(copy()));
+    connect(copyAction, &QAction::triggered, spreadsheet, &Spreadsheet::copy);
 
+    /* paste action 與相關的設置 */
     pasteAction = new QAction(tr("&Paste"), this);
     pasteAction->setIcon(QIcon(":/images/paste.png"));
-    pasteAction->setShortcut(QKeySequence::Paste);
+    pasteAction->setShortcut(QKeySequence::Paste); // ctrl + v
     pasteAction->setStatusTip(tr("Paste the clipboard's contents into "
                                  "the current selection"));
-    connect(pasteAction, SIGNAL(triggered()),
-            spreadsheet, SLOT(paste()));
+//    connect(pasteAction, SIGNAL(triggered()),
+//            spreadsheet, SLOT(paste()));
+    connect(pasteAction, &QAction::triggered,
+            spreadsheet, &Spreadsheet::paste);
 
+    /* delete action 與相關的設置 */
     deleteAction = new QAction(tr("&Delete"), this);
     deleteAction->setShortcut(QKeySequence::Delete);
     deleteAction->setStatusTip(tr("Delete the current selection's "
                                   "contents"));
-    connect(deleteAction, SIGNAL(triggered()),
-            spreadsheet, SLOT(del()));
+//    connect(deleteAction, SIGNAL(triggered()),
+//            spreadsheet, SLOT(del()));
+    connect(deleteAction, &QAction::triggered,
+            spreadsheet, &Spreadsheet::del);
 
     selectRowAction = new QAction(tr("&Row"), this);
     selectRowAction->setStatusTip(tr("Select all the cells in the "
