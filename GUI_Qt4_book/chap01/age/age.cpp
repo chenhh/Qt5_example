@@ -26,6 +26,9 @@ int main(int argc, char *argv[])
     spinBox->setValue(35);
 
     QHBoxLayout* layout = new QHBoxLayout;
+    /* 如果在建構時，直接指定parnet, 則不必使用window.setLayout */
+//    QHBoxLayout* layout = new QHBoxLayout(&window);
+
     layout->addWidget(spinBox);
     layout->addWidget(slider);
     /* 由window管理layout，再由layout管理spinbox與slider物件 */

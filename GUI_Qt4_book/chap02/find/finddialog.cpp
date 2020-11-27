@@ -48,6 +48,10 @@ FindDialog::FindDialog(QWidget *parent)
     QVBoxLayout *rightLayout = new QVBoxLayout;
     rightLayout->addWidget(findButton);
     rightLayout->addWidget(closeButton);
+    /* Adds a stretchable space (a QSpacerItem)
+     * with zero minimum size and stretch factor
+     * stretch to the end of this box layout
+     */
     rightLayout->addStretch();
 
     QHBoxLayout *mainLayout = new QHBoxLayout;
@@ -59,6 +63,7 @@ FindDialog::FindDialog(QWidget *parent)
     setFixedHeight(sizeHint().height());
 }
 
+//slot function
 void FindDialog::findClicked()
 {
     QString text {lineEdit->text()};
@@ -76,6 +81,7 @@ void FindDialog::findClicked()
     }
 }
 
+// slot function
 void FindDialog::enableFindButton(const QString &text)
 {
     findButton->setEnabled(!text.isEmpty());
