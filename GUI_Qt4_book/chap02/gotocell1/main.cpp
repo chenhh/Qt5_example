@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     Ui::GoToCellDialog ui;
-    QDialog dialog{};
+    QDialog dialog;
     /* ui 綁定dialog物件 */
     ui.setupUi(&dialog);
     dialog.show();
