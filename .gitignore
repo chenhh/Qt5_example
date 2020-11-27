@@ -33,3 +33,5 @@
 
 # Qt dir
 build*/
+cmake*/
+.idea
