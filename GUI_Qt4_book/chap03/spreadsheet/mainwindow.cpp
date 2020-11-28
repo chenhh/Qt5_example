@@ -342,23 +342,31 @@ void MainWindow::createActions()
 
 void MainWindow::createMenus()
 {
+    /* fileMenu的type是QMenu，但尚未初始化，此處是將
+     * MainWindow的menuBar()傳回QMenubar暫時物件，
+     * 再用addMenu新增QMenu選單給fileMenu做為初始化
+     */
     fileMenu = menuBar()->addMenu(tr("&File"));
+    /* fileMenu建立完成後，可將action逐項加入，action的名稱在建立action時均已指定 */
     fileMenu->addAction(newAction);
     fileMenu->addAction(openAction);
     fileMenu->addAction(saveAction);
     fileMenu->addAction(saveAsAction);
+    /* 建立分隔器後，再加入最近開啟過的檔案 */
     separatorAction = fileMenu->addSeparator();
     for (int i = 0; i < MaxRecentFiles; ++i)
         fileMenu->addAction(recentFileActions[i]);
     fileMenu->addSeparator();
     fileMenu->addAction(exitAction);
 
+    /* 建立edit的Menu清單 */
     editMenu = menuBar()->addMenu(tr("&Edit"));
     editMenu->addAction(cutAction);
     editMenu->addAction(copyAction);
     editMenu->addAction(pasteAction);
     editMenu->addAction(deleteAction);
 
+    /* 建立select的Menu子清單 */
     selectSubMenu = editMenu->addMenu(tr("&Select"));
     selectSubMenu->addAction(selectRowAction);
     selectSubMenu->addAction(selectColumnAction);
@@ -368,16 +376,19 @@ void MainWindow::createMenus()
     editMenu->addAction(findAction);
     editMenu->addAction(goToCellAction);
 
+    /* 建立tool的Menu清單 */
     toolsMenu = menuBar()->addMenu(tr("&Tools"));
     toolsMenu->addAction(recalculateAction);
     toolsMenu->addAction(sortAction);
 
+    /* 建立options的Menu清單 */
     optionsMenu = menuBar()->addMenu(tr("&Options"));
     optionsMenu->addAction(showGridAction);
     optionsMenu->addAction(autoRecalcAction);
 
     menuBar()->addSeparator();
 
+    /* 建立help的Menu清單 */
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(aboutAction);
     helpMenu->addAction(aboutQtAction);
