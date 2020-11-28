@@ -159,6 +159,7 @@ void MainWindow::openRecentFile()
 
 void MainWindow::updateStatusBar()
 {
+    /* 更新目前的狀態到label中，label位於statusBar */
     locationLabel->setText(spreadsheet->currentLocation());
     formulaLabel->setText(spreadsheet->currentFormula());
 }
@@ -396,6 +397,7 @@ void MainWindow::createMenus()
 
 void MainWindow::createContextMenu()
 {
+    /* 在spreadsheet組件中，按下右鍵會出現以下actions */
     spreadsheet->addAction(cutAction);
     spreadsheet->addAction(copyAction);
     spreadsheet->addAction(pasteAction);
@@ -404,6 +406,9 @@ void MainWindow::createContextMenu()
 
 void MainWindow::createToolBars()
 {
+    /* toolbar位於menubar下面一列，此處用MainWindow的addTooBar
+     * 將fileToolbar與editToolBar加入
+     */
     fileToolBar = addToolBar(tr("&File"));
     fileToolBar->addAction(newAction);
     fileToolBar->addAction(openAction);
@@ -420,6 +425,10 @@ void MainWindow::createToolBars()
 
 void MainWindow::createStatusBar()
 {
+    /* statusBar是位於MainWindow最下方的狀態列，
+     * 此處有兩個狀態，最左邊的location顯示目前cell的地址
+     * 如果cell中有formula時，會用formulaLabel顯示
+     */
     locationLabel = new QLabel(" W999 ");
     locationLabel->setAlignment(Qt::AlignHCenter);
     locationLabel->setMinimumSize(locationLabel->sizeHint());
@@ -427,13 +436,15 @@ void MainWindow::createStatusBar()
     formulaLabel = new QLabel;
     formulaLabel->setIndent(3);
 
+    /* MainWindow在第一次調用statusBar建立狀態列，且傳回指向狀態列的pointer */
     statusBar()->addWidget(locationLabel);
     statusBar()->addWidget(formulaLabel, 1);
 
-    connect(spreadsheet, SIGNAL(currentCellChanged(int, int, int, int)),
-            this, SLOT(updateStatusBar()));
-    connect(spreadsheet, SIGNAL(modified()),
-            this, SLOT(spreadsheetModified()));
+    /* 當spreadsheet目前cell改變或修改時，更新狀態且通知window修改sheet */
+    connect(spreadsheet, &Spreadsheet::currentCellChanged,
+            this, &MainWindow::updateStatusBar);
+    connect(spreadsheet, &Spreadsheet::modified,
+            this, &MainWindow::spreadsheetModified);
 
     updateStatusBar();
 }
