@@ -178,7 +178,6 @@ void MainWindow::createActions()
     /* 設定new action在下方status bar顯示的訊息 */
     newAction->setStatusTip(tr("Create a new spreadsheet file"));
     /* 將此action的triggered() signal連接到window的私有 newFile函式 */
-//    connect(newAction, SIGNAL(triggered()), this, SLOT(newFile()));
     connect(newAction, &QAction::triggered, this, &MainWindow::newFile);
 
     /* open action與相關的設置 */
@@ -186,7 +185,6 @@ void MainWindow::createActions()
     openAction->setIcon(QIcon(":/images/open.png"));
     openAction->setShortcut(QKeySequence::Open);
     openAction->setStatusTip(tr("Open an existing spreadsheet file"));
-//    connect(openAction, SIGNAL(triggered()), this, SLOT(open()));
     connect(openAction, &QAction::triggered, this, &MainWindow::open);
 
     /* save action與相關的設置 */
@@ -194,22 +192,18 @@ void MainWindow::createActions()
     saveAction->setIcon(QIcon(":/images/save.png"));
     saveAction->setShortcut(QKeySequence::Save);
     saveAction->setStatusTip(tr("Save the spreadsheet to disk"));
-//    connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
     connect(saveAction, &QAction::triggered, this, &MainWindow::save);
 
     /* save as action與相關的設置 */
     saveAsAction = new QAction(tr("Save &As..."), this);
     saveAsAction->setStatusTip(tr("Save the spreadsheet under a new "
                                   "name"));
-//    connect(saveAsAction, SIGNAL(triggered()), this, SLOT(saveAs()));
     connect(saveAsAction, &QAction::triggered, this, &MainWindow::saveAs);
 
     /* recent file 與相關的設置, 初始時設為不可見 */
     for (int i = 0; i < MaxRecentFiles; ++i) {
         recentFileActions[i] = new QAction(this);
         recentFileActions[i]->setVisible(false);
-//        connect(recentFileActions[i], SIGNAL(triggered()),
-//                this, SLOT(openRecentFile()));
         connect(recentFileActions[i], &QAction::triggered,
                 this, &MainWindow::openRecentFile);
     }
@@ -218,7 +212,6 @@ void MainWindow::createActions()
     exitAction = new QAction(tr("E&xit"), this);
     exitAction->setShortcut(tr("Ctrl+Q")); // manual set hotkey
     exitAction->setStatusTip(tr("Exit the application"));
-//    connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
     connect(exitAction, &QAction::triggered, this, &MainWindow::close);
 
     /* cut action 與相關的設置 */
@@ -228,7 +221,6 @@ void MainWindow::createActions()
     cutAction->setStatusTip(tr("Cut the current selection's contents "
                                "to the clipboard"));
     /* cut是剪下spreadsheet cell中的資料 */
-//    connect(cutAction, SIGNAL(triggered()), spreadsheet, SLOT(cut()));
     connect(cutAction, &QAction::triggered, spreadsheet, &Spreadsheet::cut);
 
     /* copy action 與相關的設置 */
@@ -237,7 +229,6 @@ void MainWindow::createActions()
     copyAction->setShortcut(QKeySequence::Copy); // ctrl + c
     copyAction->setStatusTip(tr("Copy the current selection's contents "
                                 "to the clipboard"));
-//    connect(copyAction, SIGNAL(triggered()), spreadsheet, SLOT(copy()));
     connect(copyAction, &QAction::triggered, spreadsheet, &Spreadsheet::copy);
 
     /* paste action 與相關的設置 */
@@ -246,8 +237,6 @@ void MainWindow::createActions()
     pasteAction->setShortcut(QKeySequence::Paste); // ctrl + v
     pasteAction->setStatusTip(tr("Paste the clipboard's contents into "
                                  "the current selection"));
-//    connect(pasteAction, SIGNAL(triggered()),
-//            spreadsheet, SLOT(paste()));
     connect(pasteAction, &QAction::triggered,
             spreadsheet, &Spreadsheet::paste);
 
@@ -256,83 +245,99 @@ void MainWindow::createActions()
     deleteAction->setShortcut(QKeySequence::Delete);
     deleteAction->setStatusTip(tr("Delete the current selection's "
                                   "contents"));
-//    connect(deleteAction, SIGNAL(triggered()),
-//            spreadsheet, SLOT(del()));
     connect(deleteAction, &QAction::triggered,
             spreadsheet, &Spreadsheet::del);
 
+     /* select row action 與相關的設置 */
     selectRowAction = new QAction(tr("&Row"), this);
     selectRowAction->setStatusTip(tr("Select all the cells in the "
                                      "current row"));
-    connect(selectRowAction, SIGNAL(triggered()),
-            spreadsheet, SLOT(selectCurrentRow()));
+    connect(selectRowAction, &QAction::triggered,
+            spreadsheet, &Spreadsheet::selectCurrentRow);
 
+    /* select row action 與相關的設置 */
     selectColumnAction = new QAction(tr("&Column"), this);
     selectColumnAction->setStatusTip(tr("Select all the cells in the "
                                         "current column"));
-    connect(selectColumnAction, SIGNAL(triggered()),
-            spreadsheet, SLOT(selectCurrentColumn()));
+    connect(selectColumnAction, &QAction::triggered,
+            spreadsheet, &Spreadsheet::selectCurrentColumn);
 
+    /* select row action 與相關的設置 */
     selectAllAction = new QAction(tr("&All"), this);
     selectAllAction->setShortcut(QKeySequence::SelectAll);
     selectAllAction->setStatusTip(tr("Select all the cells in the "
                                      "spreadsheet"));
-    connect(selectAllAction, SIGNAL(triggered()),
-            spreadsheet, SLOT(selectAll()));
 
+    /* selectAll slot是由QAbstractItemView繼承而來 */
+    connect(selectAllAction, &QAction::triggered,
+            spreadsheet, &Spreadsheet::selectAll);
+
+    /* find action 與相關的設置 */
     findAction = new QAction(tr("&Find..."), this);
     findAction->setIcon(QIcon(":/images/find.png"));
     findAction->setShortcut(QKeySequence::Find);
     findAction->setStatusTip(tr("Find a matching cell"));
-    connect(findAction, SIGNAL(triggered()), this, SLOT(find()));
+    connect(findAction, &QAction::triggered, this, &MainWindow::find);
 
+    /* go to cell action 與相關的設置 */
     goToCellAction = new QAction(tr("&Go to Cell..."), this);
     goToCellAction->setIcon(QIcon(":/images/gotocell.png"));
-    goToCellAction->setShortcut(tr("Ctrl+G"));
+    goToCellAction->setShortcut(tr("Ctrl+G")); // manual set hotkey
     goToCellAction->setStatusTip(tr("Go to the specified cell"));
-    connect(goToCellAction, SIGNAL(triggered()),
-            this, SLOT(goToCell()));
+    connect(goToCellAction, &QAction::triggered,
+            this, &MainWindow::goToCell);
 
+    /* recalculate action 與相關的設置 */
     recalculateAction = new QAction(tr("&Recalculate"), this);
-    recalculateAction->setShortcut(tr("F9"));
+    recalculateAction->setShortcut(tr("F9")); // manual set hotkey
     recalculateAction->setStatusTip(tr("Recalculate all the "
                                        "spreadsheet's formulas"));
-    connect(recalculateAction, SIGNAL(triggered()),
-            spreadsheet, SLOT(recalculate()));
+    connect(recalculateAction, &QAction::triggered,
+            spreadsheet, &Spreadsheet::recalculate);
 
+    /* sort action 與相關的設置 */
     sortAction = new QAction(tr("&Sort..."), this);
     sortAction->setStatusTip(tr("Sort the selected cells or all the "
                                 "cells"));
-    connect(sortAction, SIGNAL(triggered()), this, SLOT(sort()));
+    connect(sortAction, &QAction::triggered, this, &MainWindow::sort);
 
+    /* showgrid action 與相關的設置 */
     showGridAction = new QAction(tr("&Show Grid"), this);
+    /* 設定為可複選 */
     showGridAction->setCheckable(true);
     showGridAction->setChecked(spreadsheet->showGrid());
     showGridAction->setStatusTip(tr("Show or hide the spreadsheet's "
                                     "grid"));
-    connect(showGridAction, SIGNAL(toggled(bool)),
-            spreadsheet, SLOT(setShowGrid(bool)));
+
+    /* 將是否顯示格線的按選和spreadsheet顯示格線的屬性接起來 */
+    connect(showGridAction, &QAction::toggled,
+            spreadsheet, &Spreadsheet::setShowGrid);
+
 #if QT_VERSION < 0x040102
     // workaround for a QTableWidget bug in Qt 4.1.1
     connect(showGridAction, SIGNAL(toggled(bool)),
             spreadsheet->viewport(), SLOT(update()));
 #endif
 
+    /* showgrid action 與相關的設置 */
     autoRecalcAction = new QAction(tr("&Auto-Recalculate"), this);
+    /* 設定為可複選 */
     autoRecalcAction->setCheckable(true);
     autoRecalcAction->setChecked(spreadsheet->autoRecalculate());
     autoRecalcAction->setStatusTip(tr("Switch auto-recalculation on or "
                                       "off"));
-    connect(autoRecalcAction, SIGNAL(toggled(bool)),
-            spreadsheet, SLOT(setAutoRecalculate(bool)));
+    connect(autoRecalcAction, &QAction::toggled,
+            spreadsheet, &Spreadsheet::setAutoRecalculate);
 
+    /* about action 與相關的設置 */
     aboutAction = new QAction(tr("&About"), this);
     aboutAction->setStatusTip(tr("Show the application's About box"));
-    connect(aboutAction, SIGNAL(triggered()), this, SLOT(about()));
+    connect(aboutAction, &QAction::triggered, this, &MainWindow::about);
 
+    /* about Qt action 與相關的設置 */
     aboutQtAction = new QAction(tr("About &Qt"), this);
     aboutQtAction->setStatusTip(tr("Show the Qt library's About box"));
-    connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+    connect(aboutQtAction, &QAction::triggered, qApp, &QApplication::aboutQt);
 }
 
 void MainWindow::createMenus()
